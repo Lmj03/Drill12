@@ -5,7 +5,6 @@ from sdl2 import (SDL_KEYDOWN, SDL_KEYUP, SDLK_LEFT, SDLK_RIGHT,
                   SDLK_SPACE)
 from transitions import Machine
 
-from ball import Ball
 import game_world
 
 
@@ -51,13 +50,6 @@ class Boy:
             if self.state == 'SLEEP':
                 self.wake_up()
                 return
-            # Spawn just above the grass, in front of the boy's feet.
-            ball_x = self.x + self.face_dir * 20
-            ball_y = self.y - 18
-            game_world.add_object(Ball(ball_x, ball_y, self.face_dir), 1)
-            direction = '오른쪽' if self.face_dir == 1 else '왼쪽'
-            print(f'boy가 {direction}으로 축구공 발사')
-            return
 
         if (event.type not in (SDL_KEYDOWN, SDL_KEYUP) or
                 event.key not in (SDLK_LEFT, SDLK_RIGHT)):
